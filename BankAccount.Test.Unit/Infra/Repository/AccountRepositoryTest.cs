@@ -1,7 +1,8 @@
-﻿using System.Reflection;
-using BankAccount.Domain.Entity;
+﻿using BankAccount.Domain.Entity;
+using BankAccount.Test.Unit.Mocks;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using System.Reflection;
 
 namespace BankAccount.Test.Unit.Infra.Repository;
 
@@ -10,39 +11,56 @@ public class AccountRepositoryTest
     private readonly Faker _faker = new();
 
     [Fact]
-    public async Task Should_Create_Data()
+    public async Task Should_Create_Account_And_Generate_Id()
     {
         Account account = new(_faker.Name.FullName(), _faker.Random.Decimal(0, 100), _faker.Random.AlphaNumeric(400));
 
-        var cursorMock = new Mock<IAsyncCursor<Account>>();
-        var mongoContextMock = new Mock<IMongoContext>();
-        var mongoCollectionMock = new Mock<IMongoCollection<Account>>();
-
-        cursorMock.Setup(_ => _.Current).Returns(new List<Account> { account });
-
-        cursorMock
-            .SetupSequence(_ => _.MoveNext(It.IsAny<CancellationToken>()))
-            .Returns(true)
-            .Returns(false);
-
-        cursorMock
-            .SetupSequence(_ => _.MoveNextAsync(It.IsAny<CancellationToken>()))
-            .Returns(Task.FromResult(true))
-            .Returns(Task.FromResult(false));
-
-        mongoCollectionMock.Setup(x => x.FindAsync(It.IsAny<FilterDefinition<Account>>(),
-                It.IsAny<FindOptions<Account, Account>>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(cursorMock.Object);
-
-        mongoContextMock.Setup(x => x.AddCommand(It.IsAny<Func<Task>>()));
-
-        mongoContextMock.Setup(x => x.GetCollection<Account>(It.IsAny<string>()))
-            .Returns(mongoCollectionMock.Object);
+        var mongoContextMock = MongoContextMock.Mock(new List<Account>{account});
 
         AccountRepository repository = new(mongoContextMock.Object);
 
         await repository.Create(account);
         account.Id.Should().Be(account.Id);
+    }
+
+    [Fact]
+    public void Should_Throw_Exception_When_Id_Is_Invalid_In_Create_Account()
+    {
+        Account account = new(_faker.Random.Guid(), _faker.Name.FullName(), _faker.Random.Decimal(0, 100), _faker.Random.AlphaNumeric(400));
+
+        var mongoContextMock = MongoContextMock.Mock(new List<Account> { account });
+
+        AccountRepository repository = new(mongoContextMock.Object);
+
+        Func<Task> func= async () => await repository.Create(account);
+
+        func.Should().ThrowAsync<ArgumentException>().WithMessage($"Can't create because {nameof(BaseEntity.Id)} is not valid!");
+    }
+
+    [Fact]
+    public void Should_Throw_Exception_When_Id_Is_Invalid_In_Update_Account()
+    {
+        Account account = new(_faker.Name.FullName(), _faker.Random.Decimal(0, 100), _faker.Random.AlphaNumeric(400));
+
+        var mongoContextMock = MongoContextMock.Mock(new List<Account> { account });
+
+        AccountRepository repository = new(mongoContextMock.Object);
+
+        Func<Task> func = async () => await repository.Update(account);
+
+        func.Should().ThrowAsync<ArgumentException>().WithMessage($"Can't update because {nameof(BaseEntity.Id)} is not valid!");
+    }
+
+    [Fact]
+    public void Should_Throw_Exception_When_Id_Is_Invalid_In_Delete_Account()
+    {
+        var mongoContextMock = MongoContextMock.Mock(new List<Account>());
+
+        AccountRepository repository = new(mongoContextMock.Object);
+
+        Func<Task> func = async () => await repository.Delete(Guid.Empty);
+
+        func.Should().ThrowAsync<ArgumentException>().WithMessage($"Can't delete because {nameof(BaseEntity.Id)} is not valid!");
     }
 }
 
@@ -81,10 +99,10 @@ public abstract class Repository<TBaseEntity> : IRepository<TBaseEntity> where T
     public Task Create(TBaseEntity entity)
     {
         if (!Guid.Empty.Equals(entity.Id))
-            throw new OperationCanceledException($"Can't create because {nameof(entity.Id)} is not valid!");
+            throw new ArgumentException($"Can't create because {nameof(BaseEntity.Id)} is not valid!");
 
         var type = entity.GetType();
-        var props = type.GetProperty("Id",BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        var props = type.GetProperty("Id", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
         props?.SetValue(entity, Guid.NewGuid(), null);
 
@@ -95,7 +113,7 @@ public abstract class Repository<TBaseEntity> : IRepository<TBaseEntity> where T
     public Task Update(TBaseEntity entity)
     {
         if (Guid.Empty.Equals(entity.Id))
-            throw new OperationCanceledException($"Can't update because {nameof(entity.Id)} is not valid!");
+            throw new ArgumentException($"Can't update because {nameof(BaseEntity.Id)} is not valid!");
 
         MongoContext.AddCommand(() =>
             Collection.ReplaceOneAsync(Builders<TBaseEntity>.Filter.Eq("_id", entity.Id), entity));
@@ -105,7 +123,7 @@ public abstract class Repository<TBaseEntity> : IRepository<TBaseEntity> where T
     public Task Delete(Guid id)
     {
         if (Guid.Empty.Equals(id))
-            throw new OperationCanceledException($"Can't delete because {nameof(id)} is not valid!");
+            throw new OperationCanceledException($"Can't delete because {nameof(BaseEntity.Id)} is not valid!");
 
         MongoContext.AddCommand(() => Collection.DeleteOneAsync(Builders<TBaseEntity>.Filter.Eq("_id", id)));
         return Task.CompletedTask;
