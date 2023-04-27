@@ -11,13 +11,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{33E8B2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccount.Domain.Entity", "BankAccount.Domain.Entity\BankAccount.Domain.Entity.csproj", "{7DE78972-EE1A-484F-908C-2253AC037D9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount.Domain.Repository", "BankAccount.Domain.Repository\BankAccount.Domain.Repository.csproj", "{29C7DB61-67DA-40CD-85A5-C7456D41E7F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccount.Domain.Repository", "BankAccount.Domain.Repository\BankAccount.Domain.Repository.csproj", "{29C7DB61-67DA-40CD-85A5-C7456D41E7F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{526A3572-9C58-44A4-B2AA-5078DF62BB9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount.Infra.Repository", "BankAccount.Infra.Repository\BankAccount.Infra.Repository.csproj", "{0D449B99-0796-4473-9A40-38EA7F7C3252}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccount.Infra.Repository", "BankAccount.Infra.Repository\BankAccount.Infra.Repository.csproj", "{0D449B99-0796-4473-9A40-38EA7F7C3252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount.Infra.Context", "BankAccount.Infra.Context\BankAccount.Infra.Context.csproj", "{E9798BDE-FF51-4FE3-A000-C1E25B08D062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAccount.Infra.Context", "BankAccount.Infra.Context\BankAccount.Infra.Context.csproj", "{E9798BDE-FF51-4FE3-A000-C1E25B08D062}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F54839C3-45AB-4E80-B77F-FEDCE3854C78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
