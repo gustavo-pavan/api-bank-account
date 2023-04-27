@@ -27,12 +27,30 @@ public class AccountTest : IDisposable
         Account account = new(_dynamic?.Id, _dynamic?.Name, _dynamic?.Balance, _dynamic?.Description);
         (_dynamic as object).Should().BeEquivalentTo(account);
     }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData(" ")]
+    [InlineData(null)]
+    public void Should_Throw_Exception_When_Name_Is_Invalid(string name)
+    {
+        var action = () => new Account(_dynamic?.Id, name, _dynamic?.Balance, _dynamic?.Description);
+        action.Should().Throw<ArgumentException>().WithMessage($"{nameof(Account.Name)} can't be null or empty");
+    }
 }
 
-public class Account
+public abstract class Entity
+{
+    public Guid Id { get; protected set; }
+}
+
+public class Account : Entity
 {
     public Account(string name, decimal balance, string description)
     {
+        if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException($"{nameof(Name)} can't be null or empty");
+
         Name = name;
         Balance = balance;
         Description = description;
@@ -43,7 +61,6 @@ public class Account
         Id = id;
     }
 
-    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public decimal Balance { get; private set; }
     public string Description { get; private set; }
