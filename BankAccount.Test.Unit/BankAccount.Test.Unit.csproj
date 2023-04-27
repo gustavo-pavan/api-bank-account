@@ -33,4 +33,8 @@
     <ProjectReference Include="..\BankAccount.Infra.Repository\BankAccount.Infra.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Infra\UoW\" />
+  </ItemGroup>
+
 </Project>

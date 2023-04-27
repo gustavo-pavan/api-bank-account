@@ -14,8 +14,24 @@ public class MongoContext : IMongoContext
         _commands = new List<Func<Task>>();
     }
 
-    public IClientSessionHandle? SessionHandle { get; set; }
+    private Task<IClientSessionHandle>? Session { get; set; }
+
     public MongoClient? MongoClient { get; set; }
+
+    public Task<IClientSessionHandle> SessionHandle
+    {
+        get
+        {
+            if (Session != null) return Session;
+
+            ConfigureMongo();
+
+            if (MongoClient != null)
+                Session = MongoClient.StartSessionAsync();
+
+            return Session ?? throw new InvalidOperationException("Session can't be create");
+        }
+    }
 
     public void Dispose()
     {
@@ -30,21 +46,10 @@ public class MongoContext : IMongoContext
 
     public async Task<int> SaveChanges()
     {
-        ConfigureMongo();
+        var commandTask = _commands.Select(x => x());
+        await Task.WhenAll(commandTask);
 
-        using (SessionHandle = await MongoClient?.StartSessionAsync()!)
-        {
-            SessionHandle.StartTransaction();
-
-            var commandTask = _commands.Select(x => x());
-            await Task.WhenAll(commandTask);
-
-            await SessionHandle.CommitTransactionAsync();
-
-            return _commands.Count();
-        }
-
-        return default;
+        return _commands.Count();
     }
 
     public IMongoCollection<T> GetCollection<T>(string collectionName)
