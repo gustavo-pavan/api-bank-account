@@ -39,12 +39,12 @@ public class AccountTest : IDisposable
     }
 }
 
-public abstract class Entity
+public abstract class BaseEntity
 {
     public Guid Id { get; protected set; }
 }
 
-public class Account : Entity
+public class Account : BaseEntity
 {
     public Account(string name, decimal balance, string description)
     {
