@@ -26,6 +26,7 @@ public class UnitOfWork : IDisposable, IUnitOfWork
         catch (Exception)
         {
             await sessionHandler.AbortTransactionAsync();
+
             throw;
         }
         finally
