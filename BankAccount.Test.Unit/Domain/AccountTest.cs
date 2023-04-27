@@ -1,9 +1,9 @@
 ﻿namespace BankAccount.Test.Unit.Domain;
 
-public class AccountTest :IDisposable
+public class AccountTest : IDisposable
 {
-    private dynamic? _dynamic;
     private readonly Faker _faker = new();
+    private dynamic? _dynamic;
 
     public AccountTest()
     {
@@ -16,16 +16,16 @@ public class AccountTest :IDisposable
         };
     }
 
+    public void Dispose()
+    {
+        _dynamic = null;
+    }
+
     [Fact]
     public void Should_Create_New_Instance_Equal_Object()
     {
         Account account = new(_dynamic?.Id, _dynamic?.Name, _dynamic?.Balance, _dynamic?.Description);
         (_dynamic as object).Should().BeEquivalentTo(account);
-    }
-
-    public void Dispose()
-    {
-        _dynamic = null;
     }
 }
 
@@ -39,7 +39,9 @@ public class Account
     }
 
     public Account(Guid id, string name, decimal balance, string description) : this(name, balance, description)
-        => (Id) = (id);
+    {
+        Id = id;
+    }
 
     public Guid Id { get; private set; }
     public string Name { get; private set; }
