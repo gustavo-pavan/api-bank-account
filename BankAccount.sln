@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{201A1D31-4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount.Test.Unit", "BankAccount.Test.Unit\BankAccount.Test.Unit.csproj", "{A060EFDF-C09A-4F26-9E40-5AF1E7B33FD4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{33E8B24E-A602-48C4-A3C7-611E84C5395C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount.Domain.Entity", "BankAccount.Domain.Entity\BankAccount.Domain.Entity.csproj", "{7DE78972-EE1A-484F-908C-2253AC037D9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{A060EFDF-C09A-4F26-9E40-5AF1E7B33FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A060EFDF-C09A-4F26-9E40-5AF1E7B33FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A060EFDF-C09A-4F26-9E40-5AF1E7B33FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE78972-EE1A-484F-908C-2253AC037D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE78972-EE1A-484F-908C-2253AC037D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE78972-EE1A-484F-908C-2253AC037D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE78972-EE1A-484F-908C-2253AC037D9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A060EFDF-C09A-4F26-9E40-5AF1E7B33FD4} = {201A1D31-482F-4AC8-A7E6-3E46961B50D2}
+		{7DE78972-EE1A-484F-908C-2253AC037D9C} = {33E8B24E-A602-48C4-A3C7-611E84C5395C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CEE960B5-2F35-4BF9-97E6-5E2B80F9E89A}

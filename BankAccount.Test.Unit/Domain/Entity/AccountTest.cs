@@ -1,4 +1,6 @@
-﻿namespace BankAccount.Test.Unit.Domain;
+﻿using BankAccount.Domain.Entity;
+
+namespace BankAccount.Test.Unit.Domain.Entity;
 
 public class AccountTest : IDisposable
 {
@@ -37,31 +39,4 @@ public class AccountTest : IDisposable
         var action = () => new Account(_dynamic?.Id, name, _dynamic?.Balance, _dynamic?.Description);
         action.Should().Throw<ArgumentException>().WithMessage($"{nameof(Account.Name)} can't be null or empty");
     }
-}
-
-public abstract class BaseEntity
-{
-    public Guid Id { get; protected set; }
-}
-
-public class Account : BaseEntity
-{
-    public Account(string name, decimal balance, string description)
-    {
-        if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException($"{nameof(Name)} can't be null or empty");
-
-        Name = name;
-        Balance = balance;
-        Description = description;
-    }
-
-    public Account(Guid id, string name, decimal balance, string description) : this(name, balance, description)
-    {
-        Id = id;
-    }
-
-    public string Name { get; private set; }
-    public decimal Balance { get; private set; }
-    public string Description { get; private set; }
 }
