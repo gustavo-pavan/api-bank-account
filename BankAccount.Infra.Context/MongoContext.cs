@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
-
-namespace BankAccount.Infra.Context;
+﻿namespace BankAccount.Infra.Context;
 
 public class MongoContext : IMongoContext
 {

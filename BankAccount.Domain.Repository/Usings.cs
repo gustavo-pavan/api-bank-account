@@ -1,0 +1,1 @@
+﻿global using BankAccount.Domain.Entity;

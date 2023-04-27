@@ -1,6 +1,4 @@
-﻿using BankAccount.Domain.Entity;
-
-namespace BankAccount.Domain.Repository;
+﻿namespace BankAccount.Domain.Repository;
 
 public interface IRepository<T> : IDisposable where T : BaseEntity
 {

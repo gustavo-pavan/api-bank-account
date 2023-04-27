@@ -1,6 +1,4 @@
-﻿using MongoDB.Driver;
-
-namespace BankAccount.Infra.Context;
+﻿namespace BankAccount.Infra.Context;
 
 public interface IMongoContext : IDisposable
 {

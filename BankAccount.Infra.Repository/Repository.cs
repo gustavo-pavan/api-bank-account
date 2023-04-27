@@ -1,8 +1,4 @@
 ﻿using System.Reflection;
-using BankAccount.Domain.Entity;
-using BankAccount.Domain.Repository;
-using BankAccount.Infra.Context;
-using MongoDB.Driver;
 
 namespace BankAccount.Infra.Repository;
 
