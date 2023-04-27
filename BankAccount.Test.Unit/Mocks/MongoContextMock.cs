@@ -1,5 +1,5 @@
 ﻿using BankAccount.Domain.Entity;
-using BankAccount.Test.Unit.Infra.Repository;
+using BankAccount.Infra.Context;
 using MongoDB.Driver;
 
 namespace BankAccount.Test.Unit.Mocks;

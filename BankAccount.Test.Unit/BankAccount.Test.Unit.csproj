@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BankAccount.Domain.Entity\BankAccount.Domain.Entity.csproj" />
+    <ProjectReference Include="..\BankAccount.Infra.Repository\BankAccount.Infra.Repository.csproj" />
   </ItemGroup>
 
 </Project>
