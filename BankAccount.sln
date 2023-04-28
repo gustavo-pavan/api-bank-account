@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount.Presentation.Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{27DB8FAA-2A3A-4039-881A-7983F008D219}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccount.IoC.Injection", "BankAccount.IoC.Injection\BankAccount.IoC.Injection.csproj", "{6EAF8303-C1E8-4EE9-932A-0A04D7FF67C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{7BF327E7-F300-44E2-AA00-AAE2C4C6616C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BF327E7-F300-44E2-AA00-AAE2C4C6616C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BF327E7-F300-44E2-AA00-AAE2C4C6616C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EAF8303-C1E8-4EE9-932A-0A04D7FF67C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EAF8303-C1E8-4EE9-932A-0A04D7FF67C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EAF8303-C1E8-4EE9-932A-0A04D7FF67C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EAF8303-C1E8-4EE9-932A-0A04D7FF67C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +111,7 @@ Global
 		{99C7A16F-3630-4FA9-BFE2-C72F81B1FDA4} = {522EEDF0-55DD-42B4-9EB7-2C07CB4151D9}
 		{53E6428B-3C74-4A7C-8AC1-6CD5EEB23B7F} = {522EEDF0-55DD-42B4-9EB7-2C07CB4151D9}
 		{7BF327E7-F300-44E2-AA00-AAE2C4C6616C} = {062BA503-31F6-4304-86D7-91C165EC45D6}
+		{6EAF8303-C1E8-4EE9-932A-0A04D7FF67C2} = {27DB8FAA-2A3A-4039-881A-7983F008D219}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CEE960B5-2F35-4BF9-97E6-5E2B80F9E89A}

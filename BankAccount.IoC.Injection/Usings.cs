@@ -1,0 +1,9 @@
+﻿global using BankAccount.Domain.Repository.Account;
+global using BankAccount.Helper.Behavior;
+global using BankAccount.Infra.Context;
+global using BankAccount.Infra.Context.UoW;
+global using BankAccount.Infra.Repository.Account;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Reflection;
