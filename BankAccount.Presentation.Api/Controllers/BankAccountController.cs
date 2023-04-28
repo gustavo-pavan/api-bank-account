@@ -25,77 +25,42 @@ public class BankAccountController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        try
-        {
-            var result = await _mediator.Send(new GetRequestCommand());
+        var result = await _mediator.Send(new GetRequestCommand());
 
-            if (result?.Count() == default)
-                return NoContent();
+        if (result?.Count() == default)
+            return NoContent();
 
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        try
-        {
-            var result = await _mediator.Send(new GetByIdRequestCommand { Id = id });
-            if (result is not null)
-                return Ok(result);
+        var result = await _mediator.Send(new GetByIdRequestCommand { Id = id });
+        if (result is not null)
+            return Ok(result);
 
-            return NotFound();
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
+        return NotFound();
     }
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] CreateRequestCommand request)
     {
-        try
-        {
-            var result = await _mediator.Send(request);
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
+        var result = await _mediator.Send(request);
+        return Ok(result);
     }
 
     [HttpPut]
     public async Task<IActionResult> Put([FromBody] UpdateRequestCommand request)
     {
-        try
-        {
-            var result = await _mediator.Send(request);
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
+        var result = await _mediator.Send(request);
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
-        try
-        {
-            var result = await _mediator.Send(new DeleteRequestCommand { Id = id });
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            return BadRequest(e.Message);
-        }
+        var result = await _mediator.Send(new DeleteRequestCommand { Id = id });
+        return Ok(result);
     }
 }

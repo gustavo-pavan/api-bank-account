@@ -9,12 +9,18 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="MediatR" Version="12.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BankAccount.Helper.Extensions\BankAccount.Helper.Extensions.csproj" />
     <ProjectReference Include="..\BankAccount.Infra.Context\BankAccount.Infra.Context.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Http.Extensions">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\7.0.4\ref\net7.0\Microsoft.AspNetCore.Http.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
