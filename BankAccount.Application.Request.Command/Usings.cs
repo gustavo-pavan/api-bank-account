@@ -1,2 +1,2 @@
-﻿global using AccountEntity = BankAccount.Domain.Entity.Account;
-global using MediatR;
+﻿global using MediatR;
+global using AccountEntity = BankAccount.Domain.Entity.Account;
