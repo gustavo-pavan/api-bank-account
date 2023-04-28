@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BankAccount.Application.Request.Handler\BankAccount.Application.Request.Handler.csproj" />
     <ProjectReference Include="..\BankAccount.Domain.Entity\BankAccount.Domain.Entity.csproj" />
     <ProjectReference Include="..\BankAccount.Infra.Repository\BankAccount.Infra.Repository.csproj" />
   </ItemGroup>
