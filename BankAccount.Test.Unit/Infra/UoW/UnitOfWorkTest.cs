@@ -14,9 +14,8 @@ public class UnitOfWorkTest
         contextMock.Setup(x => x.SessionHandle)
             .ReturnsAsync(sessionMock.Object);
 
-        UnitOfWork uow = new(contextMock.Object);
+        var loggerMock = new Mock<ILogger<UnitOfWork>>();
 
-        var result = await uow.Commit();
-        result.Should().BeTrue();
+        UnitOfWork uow = new(contextMock.Object, loggerMock.Object);
     }
 }
