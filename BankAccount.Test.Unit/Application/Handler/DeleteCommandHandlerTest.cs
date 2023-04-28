@@ -1,7 +1,4 @@
-﻿using BankAccount.Domain.Repository.Account;
-using MediatR;
-
-namespace BankAccount.Test.Unit.Application.Handler;
+﻿namespace BankAccount.Test.Unit.Application.Handler;
 
 public class DeleteCommandHandlerTest
 {
@@ -43,41 +40,5 @@ public class DeleteCommandHandlerTest
 
         Func<Task> func = () => requestCommand.Handle(command, CancellationToken.None);
         func.Should().ThrowAsync<ArgumentException>();
-    }
-}
-
-public class DeleteRequestCommand : IRequest<bool>
-{
-    public Guid Id { get; set; }
-}
-
-public class DeleteRequestCommandHandler : IRequestHandler<DeleteRequestCommand, bool>
-{
-    private readonly IDeleteRepository<Account> _deleteRepository;
-    private readonly ILogger<DeleteRequestCommandHandler> _logger;
-
-    public DeleteRequestCommandHandler(IDeleteRepository<Account> deleteRepository,
-        ILogger<DeleteRequestCommandHandler> logger)
-    {
-        _deleteRepository = deleteRepository;
-        _logger = logger;
-    }
-
-    public async Task<bool> Handle(DeleteRequestCommand request, CancellationToken cancellationToken)
-    {
-        try
-        {
-            _logger.LogInformation("Start handler to delete account bank");
-            _logger.LogInformation("Execute transaction with database");
-            await _deleteRepository.Execute(request.Id);
-
-            _logger.LogInformation("Delete account with success");
-            return true;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError($"Error: {e.Message}");
-            throw;
-        }
     }
 }
