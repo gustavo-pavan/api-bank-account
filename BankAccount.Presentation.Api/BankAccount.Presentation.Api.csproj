@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BankAccount.Application.Request.Command\BankAccount.Application.Request.Command.csproj" />
     <ProjectReference Include="..\BankAccount.IoC.Injection\BankAccount.IoC.Injection.csproj" />
   </ItemGroup>
 
