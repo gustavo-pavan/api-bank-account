@@ -4,7 +4,7 @@ public static class Container
 {
     public static void AddDependency(this IServiceCollection service)
     {
-        service.AddTransient<IMongoContext, MongoContext>();
+        service.AddScoped<IMongoContext, MongoContext>();
 
         service.AddTransient(typeof(ICreateRepository<>), typeof(CreateRepository<>));
         service.AddTransient(typeof(IUpdateRepository<>), typeof(UpdateRepository<>));

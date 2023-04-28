@@ -63,7 +63,7 @@ public class MongoContext : IMongoContext
     {
         if (MongoClient != null) return;
 
-        MongoClient = new MongoClient(_configuration["MongoSettings:Connection"]);
-        _database = MongoClient.GetDatabase(_configuration["MongoSettings:DatabaseName"]);
+        MongoClient = new MongoClient(_configuration["MongoSettings_Connection"]);
+        _database = MongoClient.GetDatabase(_configuration["MongoSettings_DatabaseName"]);
     }
 }
