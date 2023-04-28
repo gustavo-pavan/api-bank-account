@@ -12,9 +12,9 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Handling commnad {name} ({@Command})", request.GetGenericTypeName());
+        _logger.LogInformation("Handling command {name} ({@Command})", request.GetGenericTypeName());
         var response = await next();
-        _logger.LogInformation("Command {name} handled - response: {reponse}", request.GetGenericTypeName(), response);
+        _logger.LogInformation("Command {name} handled - response: {response}", request.GetGenericTypeName(), response);
 
         return response;
     }
