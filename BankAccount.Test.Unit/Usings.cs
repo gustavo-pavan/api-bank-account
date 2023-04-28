@@ -1,6 +1,7 @@
 global using BankAccount.Application.Request.Command.Account;
 global using BankAccount.Application.Request.Handler.Account;
 global using BankAccount.Domain.Entity;
+global using BankAccount.Domain.Repository.Account;
 global using BankAccount.Infra.Context;
 global using BankAccount.Infra.Context.UoW;
 global using BankAccount.Infra.Repository.Account;
